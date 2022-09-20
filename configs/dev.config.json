@@ -1,13 +1,3 @@
-// {
-//     "db": {
-//         "host": "localhost",
-//         "port": "3306",
-//         "dbName": "maboutique",
-//         "user": "root",
-//         "pass": ""
-//     }
-// }
-
 {
     "db": {
         "host": "localhost",
