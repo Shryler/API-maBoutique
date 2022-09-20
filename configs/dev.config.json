@@ -1,9 +1,19 @@
+// {
+//     "db": {
+//         "host": "localhost",
+//         "port": "3306",
+//         "dbName": "maboutique",
+//         "user": "root",
+//         "pass": ""
+//     }
+// }
+
 {
     "db": {
         "host": "localhost",
         "port": "3306",
-        "dbName": "maboutique",
-        "user": "root",
-        "pass": ""
+        "dbName": "id19597800_maboutique",
+        "user": "id19597800_shryler",
+        "pass": "?|rK$7J<jhCy!(Ta"
     }
 }
