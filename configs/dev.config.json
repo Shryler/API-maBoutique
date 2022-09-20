@@ -2,8 +2,8 @@
     "db": {
         "host": "localhost",
         "port": "3306",
-        "dbName": "id19597800_maboutique",
-        "user": "id19597800_shryler",
-        "pass": "?|rK$7J<jhCy!(Ta"
+        "dbName": "maboutique",
+        "user": "root",
+        "pass": ""
     }
 }
