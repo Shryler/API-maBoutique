@@ -14,8 +14,8 @@
 
     public function getData($id){
         require_once 'category.controller.php';
-        $themeCtrl = new CategoryController([$id]);
-        $row = $themeCtrl->getOneWith($id, ["product"]);
+        $categoryCtrl = new CategoryController([$id]);
+        $row = $categoryCtrl->getOneWith($id, ["category_product"]);
 
         // require_once 'article.controller.php';
         // $articleCtrl = new ArticleController([]);

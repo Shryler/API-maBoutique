@@ -43,4 +43,4 @@ Content-Type: application/json
 
 ### specific ThemeDetail
 
-GET http://maboutique.api/themeDetail/{{id}}
+GET http://maboutique.api/categoryDetail/{{id}}
