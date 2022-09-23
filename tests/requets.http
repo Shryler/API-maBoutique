@@ -1,6 +1,6 @@
 @table = category
 @id = 1
-@body = {"title": "écologie", "img_src": "https://picsum.photos/id/237/200/300"}
+@body = {"with": [ "product" ]}
 
 GET http://maboutique.api/init
 
@@ -28,3 +28,19 @@ PATCH http://maboutique.api/{{table}}/{{id}}
 
 ###
 DELETE http://maboutique.api/{{table}}/{{id}}
+
+###
+POST http://maboutique.api/{{table}}/0
+Content-Type: application/json
+
+{{body}}
+
+###
+POST http://maboutique.api/{{table}}/{{id}}
+Content-Type: application/json
+
+{{body}}
+
+### specific ThemeDetail
+
+GET http://maboutique.api/themeDetail/{{id}}
