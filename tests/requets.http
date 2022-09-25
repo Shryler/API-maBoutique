@@ -1,6 +1,6 @@
-@table = category
+@table = product
 @id = 1
-@body = {"with": [ "product", { "product": "category_product" } ]}
+@body = {"with": [ "category", {"category": "category_product"} ]}
 
 GET http://maboutique.api/init
 
