@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 20 sep. 2022 à 12:58
+-- Généré le : dim. 25 sep. 2022 à 17:02
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -29,19 +29,19 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `app_user`;
 CREATE TABLE IF NOT EXISTS `app_user` (
-  `id_app_user` int(11) NOT NULL AUTO_INCREMENT,
+  `Id_app_user` int(11) NOT NULL AUTO_INCREMENT,
   `password` varchar(255) DEFAULT NULL,
   `mail` varchar(255) DEFAULT NULL,
   `active` tinyint(1) DEFAULT NULL,
   `is_deleted` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id_app_user`)
+  PRIMARY KEY (`Id_app_user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `app_user`
 --
 
-INSERT INTO `app_user` (`id_app_user`, `password`, `mail`, `active`, `is_deleted`) VALUES
+INSERT INTO `app_user` (`Id_app_user`, `password`, `mail`, `active`, `is_deleted`) VALUES
 (1, 'OPh3fdsUh', 'abizley0@list-manage.com', 0, 0),
 (2, 'KdZO0PEiJV', 'fhussell1@ucsd.edu', 0, 1),
 (3, 'uLVQxvQ', 'dnewark2@cafepress.com', 1, 1),
@@ -106,6 +106,7 @@ DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
   `Id_category` int(11) NOT NULL AUTO_INCREMENT,
   `category` varchar(255) DEFAULT NULL,
+  `img` text,
   `is_deleted` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`Id_category`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
@@ -114,16 +115,16 @@ CREATE TABLE IF NOT EXISTS `category` (
 -- Déchargement des données de la table `category`
 --
 
-INSERT INTO `category` (`Id_category`, `category`, `is_deleted`) VALUES
-(1, 'Ecran PC', 0),
-(2, 'Clavier/Souris/Tapis', 0),
-(3, 'Casque & micro', 0),
-(4, 'Webcam', 0),
-(5, 'Ordinateurs Portables', 0),
-(6, 'Ordinateurs PC Fixe', 0),
-(7, 'Tablette', 0),
-(8, 'Ipad', 0),
-(9, 'Nouveautes', 0);
+INSERT INTO `category` (`Id_category`, `category`, `img`, `is_deleted`) VALUES
+(1, 'Ecran PC', 'https://media.ldlc.com/r100/ld/categories/thumbnails/4275.jpg', 0),
+(2, 'Clavier/Souris/Tapis', 'https://media.ldlc.com/r100/ld/categories/thumbnails/4274.jpg', 0),
+(3, 'Casque & micro', 'https://media.ldlc.com/r100/ld/categories/thumbnails/4273.jpg', 0),
+(4, 'Webcam', 'https://media.ldlc.com/r100/ld/categories/thumbnails/4287.jpg', 0),
+(5, 'Ordinateurs Portables', 'https://media.ldlc.com/r100/ld/categories/thumbnails/4195.jpg', 0),
+(6, 'Ordinateurs PC Fixe', 'https://media.ldlc.com/r100/ld/categories/thumbnails/4194.jpg', 0),
+(7, 'Tablette', 'https://media.ldlc.com/r100/ld/categories/thumbnails/7630.jpg', 0),
+(8, 'Ipad', 'https://media.ldlc.com/r100/ld/categories/thumbnails/4271.jpg', 0),
+(9, 'Nouveautes', 'https://toppng.com/uploads/preview/new-stamp-11523435752rptwhdc8or.png', 0);
 
 -- --------------------------------------------------------
 
@@ -133,23 +134,25 @@ INSERT INTO `category` (`Id_category`, `category`, `is_deleted`) VALUES
 
 DROP TABLE IF EXISTS `category_product`;
 CREATE TABLE IF NOT EXISTS `category_product` (
-  `id_product` int(11) DEFAULT NULL,
-  `id_category` int(11) DEFAULT NULL,
-  `id_category_product` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id_category_product`),
-  KEY `id_product` (`id_product`),
-  KEY `id_category` (`id_category`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+  `Id_product` int(11) DEFAULT NULL,
+  `Id_category` int(11) DEFAULT NULL,
+  `Id_category_product` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`Id_category_product`),
+  KEY `id_product` (`Id_product`),
+  KEY `id_category` (`Id_category`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `category_product`
 --
 
-INSERT INTO `category_product` (`id_product`, `id_category`, `id_category_product`) VALUES
+INSERT INTO `category_product` (`Id_product`, `Id_category`, `Id_category_product`) VALUES
 (1, 1, 1),
-(1, 9, 2),
-(2, 2, 3),
-(2, 9, 6);
+(2, 1, 2),
+(4, 1, 3),
+(3, 1, 4),
+(5, 2, 9),
+(6, 2, 10);
 
 -- --------------------------------------------------------
 
@@ -159,22 +162,22 @@ INSERT INTO `category_product` (`id_product`, `id_category`, `id_category_produc
 
 DROP TABLE IF EXISTS `command`;
 CREATE TABLE IF NOT EXISTS `command` (
-  `id_command` int(11) NOT NULL AUTO_INCREMENT,
+  `Id_command` int(11) NOT NULL AUTO_INCREMENT,
   `date_ordered` datetime DEFAULT NULL,
   `cmd_number` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `bill_nb` int(11) DEFAULT NULL,
   `is_deleted` tinyint(1) DEFAULT NULL,
-  `id_customer` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_command`),
-  KEY `id_customer` (`id_customer`)
+  `Id_customer` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Id_command`),
+  KEY `id_customer` (`Id_customer`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `command`
 --
 
-INSERT INTO `command` (`id_command`, `date_ordered`, `cmd_number`, `status`, `bill_nb`, `is_deleted`, `id_customer`) VALUES
+INSERT INTO `command` (`Id_command`, `date_ordered`, `cmd_number`, `status`, `bill_nb`, `is_deleted`, `Id_customer`) VALUES
 (1, '2022-07-17 16:29:02', 2147483647, 1, 1147149534, 1, 1),
 (2, '2022-01-03 03:27:45', 309489806, 2, 2147483647, 0, 1),
 (3, '2022-06-29 21:07:41', 2147483647, 2, 2147483647, 0, 3),
@@ -194,22 +197,22 @@ INSERT INTO `command` (`id_command`, `date_ordered`, `cmd_number`, `status`, `bi
 
 DROP TABLE IF EXISTS `command_line`;
 CREATE TABLE IF NOT EXISTS `command_line` (
-  `id_command_line` int(11) NOT NULL AUTO_INCREMENT,
+  `Id_command_line` int(11) NOT NULL AUTO_INCREMENT,
   `quantity` int(11) DEFAULT NULL,
   `price` double DEFAULT NULL,
   `rate_tva` double DEFAULT NULL,
-  `id_product` int(11) DEFAULT NULL,
-  `id_command` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_command_line`),
-  KEY `id_product` (`id_product`),
-  KEY `id_command` (`id_command`)
+  `Id_product` int(11) DEFAULT NULL,
+  `Id_command` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Id_command_line`),
+  KEY `id_product` (`Id_product`),
+  KEY `id_command` (`Id_command`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `command_line`
 --
 
-INSERT INTO `command_line` (`id_command_line`, `quantity`, `price`, `rate_tva`, `id_product`, `id_command`) VALUES
+INSERT INTO `command_line` (`Id_command_line`, `quantity`, `price`, `rate_tva`, `Id_product`, `Id_command`) VALUES
 (1, 6, 100.99, 20, 1, 1),
 (2, 2, 69.99, 20, 1, 1),
 (3, 2, 59.99, 20, 2, 2);
@@ -233,16 +236,16 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `city` varchar(255) DEFAULT NULL,
   `phone_number` int(11) DEFAULT NULL,
   `is_deleted` tinyint(1) DEFAULT NULL,
-  `id_app_user` int(11) DEFAULT NULL,
+  `Id_app_user` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id_customer`),
-  KEY `id_app_user` (`id_app_user`)
+  KEY `id_app_user` (`Id_app_user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `customer`
 --
 
-INSERT INTO `customer` (`Id_customer`, `inscription`, `civility`, `name`, `surname`, `birthdate`, `address`, `country_code`, `city`, `phone_number`, `is_deleted`, `id_app_user`) VALUES
+INSERT INTO `customer` (`Id_customer`, `inscription`, `civility`, `name`, `surname`, `birthdate`, `address`, `country_code`, `city`, `phone_number`, `is_deleted`, `Id_app_user`) VALUES
 (1, '2022-06-25', 'Mrs', 'Overell', 'Inessa', '2021-10-26', '0 Burrows Court', 0, 'Umeå', 2147483647, 1, 5),
 (2, '2022-01-31', 'Mrs', 'Gisbey', 'Barbe', '2022-03-02', '6 Union Crossing', 0, 'Suraż', 1584303748, 0, NULL),
 (3, '2021-11-11', 'Mrs', 'Lening', 'Dionisio', '2022-08-14', '71762 Pond Lane', 0, 'Shangyuan', 2143566586, 0, NULL),
@@ -277,17 +280,17 @@ INSERT INTO `customer` (`Id_customer`, `inscription`, `civility`, `name`, `surna
 
 DROP TABLE IF EXISTS `img`;
 CREATE TABLE IF NOT EXISTS `img` (
-  `id_img` int(11) NOT NULL AUTO_INCREMENT,
+  `Id_img` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(255) DEFAULT NULL,
   `is_deleted` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id_img`)
+  PRIMARY KEY (`Id_img`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `img`
 --
 
-INSERT INTO `img` (`id_img`, `url`, `is_deleted`) VALUES
+INSERT INTO `img` (`Id_img`, `url`, `is_deleted`) VALUES
 (1, 'https://media.ldlc.com/r1600/ld/products/00/05/21/61/LD0005216148_2.jpg', 0),
 (2, 'https://media.ldlc.com/r1600/ld/products/00/05/21/61/LD0005216163_2.jpg', 0),
 (4, 'https://media.ldlc.com/r1600/ld/products/00/05/92/79/LD0005927989_1.jpg', 0),
@@ -301,19 +304,19 @@ INSERT INTO `img` (`id_img`, `url`, `is_deleted`) VALUES
 
 DROP TABLE IF EXISTS `img_product`;
 CREATE TABLE IF NOT EXISTS `img_product` (
-  `id_img` int(11) DEFAULT NULL,
-  `id_product` int(11) DEFAULT NULL,
-  `id_img_product` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id_img_product`),
-  KEY `id_img` (`id_img`),
-  KEY `id_product` (`id_product`)
+  `Id_img` int(11) DEFAULT NULL,
+  `Id_product` int(11) DEFAULT NULL,
+  `Id_img_product` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`Id_img_product`),
+  KEY `id_img` (`Id_img`),
+  KEY `id_product` (`Id_product`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `img_product`
 --
 
-INSERT INTO `img_product` (`id_img`, `id_product`, `id_img_product`) VALUES
+INSERT INTO `img_product` (`Id_img`, `Id_product`, `Id_img_product`) VALUES
 (1, 1, 1),
 (2, 1, 2),
 (4, 2, 3),
@@ -327,28 +330,33 @@ INSERT INTO `img_product` (`id_img`, `id_product`, `id_img_product`) VALUES
 
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE IF NOT EXISTS `product` (
-  `id_product` int(11) NOT NULL AUTO_INCREMENT,
+  `Id_product` int(11) NOT NULL AUTO_INCREMENT,
   `designation` text,
   `min_description` text,
   `description` text,
+  `image` text,
   `current_price` double DEFAULT NULL,
   `current_rate_tva` double DEFAULT NULL,
   `stock_min` int(11) DEFAULT NULL,
   `stock_qty` int(11) DEFAULT NULL,
   `stock_max` int(11) DEFAULT NULL,
   `is_deleted` tinyint(1) DEFAULT NULL,
-  `id_brand` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_product`),
-  KEY `id_brand` (`id_brand`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+  `Id_brand` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Id_product`),
+  KEY `id_brand` (`Id_brand`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `product`
 --
 
-INSERT INTO `product` (`id_product`, `designation`, `min_description`, `description`, `current_price`, `current_rate_tva`, `stock_min`, `stock_qty`, `stock_max`, `is_deleted`, `id_brand`) VALUES
-(1, 'LG 22\" LED 22MK430H-B', '1920 x 1080 pixels - 5 ms - Format large 16/9 - Dalle IPS - FreeSync - HDMI - Noir', 'Regroupant des fonctionnalités idéales pour des parties de haute volée, le moniteur 22MK430H-B signé LG vous accompagnera idéalement dans votre quête de la victoire. Savourez des moments intenses devant cet écran Full HD doté d\'une dalle IPS et de la technologie AMD FreeSync.', 159.95, 20, 0, 6, 10, 0, 1),
-(2, 'Samsung 23.8\" LED - S24R35AFHU', '1920 x 1080 pixels - 4 ms (gris à gris) - 16/9 - Dalle VA - 75 Hz - FreeSync - HDMI/VGA - Noir', 'Avec une résolution Full HD sur une dalle VA, le moniteur Samsung S24R35AFHU possède toutes les qualités pour accompagner vos besoins au quotidien. Bénéficiez d\'une belle polyvalence pour une utilisation multimédia, bureautique ou gaming en fonction de vos envies.', 139.96, 20, 0, 4, 10, 0, 4);
+INSERT INTO `product` (`Id_product`, `designation`, `min_description`, `description`, `image`, `current_price`, `current_rate_tva`, `stock_min`, `stock_qty`, `stock_max`, `is_deleted`, `Id_brand`) VALUES
+(1, 'LG 22\" LED 22MK430H-B', '1920 x 1080 pixels - 5 ms - Format large 16/9 - Dalle IPS - FreeSync - HDMI - Noir', 'Regroupant des fonctionnalités idéales pour des parties de haute volée, le moniteur 22MK430H-B signé LG vous accompagnera idéalement dans votre quête de la victoire. Savourez des moments intenses devant cet écran Full HD doté d\'une dalle IPS et de la technologie AMD FreeSync.', 'https://media.ldlc.com/r150/ld/products/00/05/21/61/LD0005216148_2.jpg', 159.95, 20, 0, 6, 10, 0, 1),
+(2, 'Samsung 23.8\" LED - S24R35AFHU', '1920 x 1080 pixels - 4 ms (gris à gris) - 16/9 - Dalle VA - 75 Hz - FreeSync - HDMI/VGA - Noir', 'Avec une résolution Full HD sur une dalle VA, le moniteur Samsung S24R35AFHU possède toutes les qualités pour accompagner vos besoins au quotidien. Bénéficiez d\'une belle polyvalence pour une utilisation multimédia, bureautique ou gaming en fonction de vos envies.', 'https://media.ldlc.com/r150/ld/products/00/05/92/79/LD0005927989_1.jpg', 139.96, 20, 0, 0, 10, 0, 4),
+(3, 'Samsung 24\" LED - Odyssey G3 S24AG300NU', '1920 x 1080 pixels - 1 ms (MPRT) - Format 16/9 - Dalle VA - 144 Hz - FreeSync Premium - HDMI/DisplayPort - Pivot - Noir', 'En prenant les commandes du moniteur Samsung Odyssey G3 24AG300NU, vous entrez dans un univers gaming optimisé. Retrouvez sur une dalle VA 24 pouces une belle image Full HD et des performances jeu à la hauteur de vos ambitions (1 ms, 144 Hz, FreeSync Premium).', 'https://media.ldlc.com/r150/ld/products/00/05/86/95/LD0005869532_1.jpg', 199.96, 20, 0, 5, 10, 0, 4),
+(4, 'Dell 21.5\" LED - E2216HV', '1920 x 1080 pixels - 5 ms (gris à gris) - Format 16/9 - VGA - Noir', 'L\'écran Dell E2216HV vous assistera au quotidien pour travailler en toute simplicité. Que ce soit à la maison ou au bureau, installez facilement cet écran au coeur de votre environnement et profitez d\'une efficacité supérieure pour un budget limité.', 'https://media.ldlc.com/r150/ld/products/00/05/71/64/LD0005716497_1_0005716516.jpg', 169.94, 20, 0, 3, 10, 0, 6),
+(5, 'Razer Basilisk Ultimate', 'Souris avec ou sans fil pour gamer - droitier - technologie Razer HyperSpeed - capteur optique 20000 dpi - 11 boutons programmables - rétro-éclairage Chroma RGB', 'Avec la Razer Basilisk Ultimate, vous disposez d\'une souris de jeu sans fil haute performance. Disposant de technologies avancées comme la technologie sans fil Razer HyperSpeed ou encore les switches optiques Razer, la Basilisk Ultimate vous aide à frapper avec une rapidité mortelle.', 'https://media.ldlc.com/r374/ld/products/00/05/73/22/LD0005732216_1.jpg', 99.95, 20, 0, 4, 10, 0, 2),
+(6, 'Logitech B100 Optical USB Mouse (Blanc)', 'Souris filaire - ambidextre - capteur optique 800 dpi - 3 boutons', 'La souris Logitech B100 Optical USB Mouse est un modèle simple, robuste et efficace. Grâce à sa forme confortable, elle vous offrira un excellent niveau de confort pour toutes vos applications de bureautique.', 'https://media.ldlc.com/r374/ld/products/00/01/35/10/LD0001351074_2.jpg', 13.96, 20, 0, 6, 10, 0, 3);
 
 --
 -- Contraintes pour les tables déchargées
@@ -358,40 +366,40 @@ INSERT INTO `product` (`id_product`, `designation`, `min_description`, `descript
 -- Contraintes pour la table `category_product`
 --
 ALTER TABLE `category_product`
-  ADD CONSTRAINT `category_product_ibfk_1` FOREIGN KEY (`id_product`) REFERENCES `product` (`id_product`),
-  ADD CONSTRAINT `category_product_ibfk_2` FOREIGN KEY (`id_category`) REFERENCES `category` (`Id_category`);
+  ADD CONSTRAINT `category_product_ibfk_1` FOREIGN KEY (`Id_product`) REFERENCES `product` (`Id_product`),
+  ADD CONSTRAINT `category_product_ibfk_2` FOREIGN KEY (`Id_category`) REFERENCES `category` (`Id_category`);
 
 --
 -- Contraintes pour la table `command`
 --
 ALTER TABLE `command`
-  ADD CONSTRAINT `command_ibfk_1` FOREIGN KEY (`id_customer`) REFERENCES `customer` (`Id_customer`);
+  ADD CONSTRAINT `command_ibfk_1` FOREIGN KEY (`Id_customer`) REFERENCES `customer` (`Id_customer`);
 
 --
 -- Contraintes pour la table `command_line`
 --
 ALTER TABLE `command_line`
-  ADD CONSTRAINT `command_line_ibfk_1` FOREIGN KEY (`id_product`) REFERENCES `product` (`id_product`),
-  ADD CONSTRAINT `command_line_ibfk_2` FOREIGN KEY (`id_command`) REFERENCES `command` (`id_command`);
+  ADD CONSTRAINT `command_line_ibfk_1` FOREIGN KEY (`Id_product`) REFERENCES `product` (`Id_product`),
+  ADD CONSTRAINT `command_line_ibfk_2` FOREIGN KEY (`Id_command`) REFERENCES `command` (`Id_command`);
 
 --
 -- Contraintes pour la table `customer`
 --
 ALTER TABLE `customer`
-  ADD CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`id_app_user`) REFERENCES `app_user` (`id_app_user`);
+  ADD CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`Id_app_user`) REFERENCES `app_user` (`Id_app_user`);
 
 --
 -- Contraintes pour la table `img_product`
 --
 ALTER TABLE `img_product`
-  ADD CONSTRAINT `img_product_ibfk_1` FOREIGN KEY (`id_img`) REFERENCES `img` (`id_img`),
-  ADD CONSTRAINT `img_product_ibfk_2` FOREIGN KEY (`id_product`) REFERENCES `product` (`id_product`);
+  ADD CONSTRAINT `img_product_ibfk_1` FOREIGN KEY (`Id_img`) REFERENCES `img` (`Id_img`),
+  ADD CONSTRAINT `img_product_ibfk_2` FOREIGN KEY (`Id_product`) REFERENCES `product` (`Id_product`);
 
 --
 -- Contraintes pour la table `product`
 --
 ALTER TABLE `product`
-  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`id_brand`) REFERENCES `brand` (`Id_brand`);
+  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`Id_brand`) REFERENCES `brand` (`Id_brand`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
